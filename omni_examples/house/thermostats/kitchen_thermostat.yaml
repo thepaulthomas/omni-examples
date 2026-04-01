@@ -1,0 +1,11 @@
+$schema: omni:local/thermostat?schema=1.0.0
+daily_schedule:
+  Monday:
+    "1700": 20
+    "2200": 10
+    "0600": 20
+    "0900": 10
+  Tuesday:
+    "2200": 10
+    "0600": 20
+name: Kitchen

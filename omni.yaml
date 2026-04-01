@@ -1,0 +1,38 @@
+indexVersion: 1
+targets:
+  omni_examples/car/car.json:
+    type: config
+  omni_examples/car/car_model.json:
+    aliases:
+      - car
+    public: true
+    type: model
+  omni_examples/fancy_kettle/fancy_kettle.json:
+    type: config
+  omni_examples/fancy_kettle/fancy_kettle_schema.json:
+    type: schema
+  omni_examples/house/house.json:
+    type: config
+  omni_examples/house/thermostat_model.json:
+    aliases:
+      - thermostat
+    public: true
+    type: model
+  omni_examples/house/thermostats/bedroom_thermostat.yaml:
+    aliases:
+      - bedroom
+    type: config
+  omni_examples/house/thermostats/kitchen_thermostat.yaml:
+    aliases:
+      - kitchen
+    type: config
+  omni_examples/house/thermostats/living_room_thermostat.toml:
+    aliases:
+      - living_room
+    type: config
+  omni_examples/house/thermostats/lounge_thermostat.json:
+    aliases:
+      - lounge
+    type: config
+  omni_examples/toaster/dark_bread.json:
+    type: config

@@ -1,0 +1,5 @@
+{
+  "$schema": "./fancy_kettle_schema.json",
+  "colour": "sage",
+  "temperature": 80
+}

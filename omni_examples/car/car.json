@@ -1,0 +1,78 @@
+{
+  "$schema": "omni:local/car?schema=0.0.0",
+  "engine": {
+    "map": [
+      {
+        "rpm": 0,
+        "torque": 1
+      },
+      {
+        "rpm": 10,
+        "torque": 15
+      },
+      {
+        "rpm": 100,
+        "torque": 150
+      },
+      {
+        "rpm": 1000,
+        "torque": 200
+      },
+      {
+        "rpm": 2000,
+        "torque": 200
+      },
+      {
+        "rpm": 4000,
+        "torque": 100
+      },
+      {
+        "rpm": 5000,
+        "torque": 0
+      }
+    ],
+    "maxRPM": 5000,
+    "volume": 1.2,
+    "weight": 350
+  },
+  "gearbox": {
+    "gears": [
+      {
+        "name": "First",
+        "ratio": 0.1
+      },
+      {
+        "name": "Second",
+        "ratio": 0.3
+      },
+      {
+        "name": "Third",
+        "ratio": 0.7
+      }
+    ],
+    "weight": 220
+  },
+  "name": "Example Car",
+  "tyres": [
+    {
+      "grip": 0.4,
+      "pressure": 34,
+      "radius": 0.3
+    },
+    {
+      "grip": 0.4,
+      "pressure": 34,
+      "radius": 0.3
+    },
+    {
+      "grip": 0.4,
+      "pressure": 32,
+      "radius": 0.3
+    },
+    {
+      "grip": 0.4,
+      "pressure": 32,
+      "radius": 0.3
+    }
+  ]
+}

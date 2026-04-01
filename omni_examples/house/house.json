@@ -1,0 +1,6 @@
+{
+  "bedroom": "omni:local/bedroom?at=0.0.1",
+  "kitchen": "omni:local/kitchen?at=1.0.0",
+  "living_room": "omni:local/living_room?at=0.0.1",
+  "lounge": "omni:local/lounge?at=0.0.1"
+}

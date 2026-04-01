@@ -1,0 +1,14 @@
+{
+  "$schema": "omni:local/thermostat?schema=0.0.0",
+  "name": "Lounge",
+  "schedule": {
+    "Monday": {
+      "2100": 11,
+      "0600": 20
+    },
+    "Tuesday": {
+      "2100": 11,
+      "0600": 20
+    }
+  }
+}

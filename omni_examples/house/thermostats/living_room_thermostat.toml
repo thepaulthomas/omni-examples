@@ -1,0 +1,10 @@
+"$schema" = "omni:local/thermostat?schema=0.0.3"
+name = "Living Room"
+
+[daily_schedule.Monday]
+2100 = 289.15
+0600 = 291.15
+
+[daily_schedule.Tuesday]
+2100 = 289.15
+0600 = 291.15

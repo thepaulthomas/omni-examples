@@ -1,0 +1,191 @@
+{
+  "$schema": "https://schemas.omni-clm.com/model/v1/schema",
+  "baseSchema": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "enum": [
+          "Basement",
+          "Bedroom",
+          "Living Room",
+          "Lounge"
+        ]
+      },
+      "schedule": {
+        "additionalProperties": {
+          "additionalProperties": {
+            "minimum": -273.15,
+            "type": "number"
+          },
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^([01][0-9]|2[0-3])([0-5][0-9])$"
+          },
+          "type": "object"
+        },
+        "propertyNames": {
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "name",
+      "schedule"
+    ]
+  },
+  "baseVersion": "0.0.0",
+  "description": "A thermostat that can be used to control the temperature in a room.",
+  "migrations": [
+    {
+      "description": "Rename the 'schedule' property to 'schedules'.",
+      "steps": [
+        {
+          "args": {
+            "from": "schedule",
+            "to": "schedules"
+          },
+          "description": "This step is applied during a data migration. We could use anchors to reduce copy pasta risks?",
+          "functionName": "move",
+          "scope": ""
+        }
+      ],
+      "to": "0.0.1"
+    },
+    {
+      "description": "Rename the 'schedules' property to 'daily_schedule'.",
+      "steps": [
+        {
+          "args": {
+            "from": "schedules",
+            "to": "daily_schedule"
+          },
+          "description": "This step is applied during a data migration.  We could use anchors to reduce copy pasta risks?",
+          "functionName": "move",
+          "scope": ""
+        }
+      ],
+      "to": "0.0.2"
+    },
+    {
+      "description": "Changes the temperature values to be in Kelvin.",
+      "steps": [
+        {
+          "args": {
+            "gain": 1,
+            "offset": 273.15
+          },
+          "description": "A migration to convert Celsius to Kelvin.",
+          "functionName": "scale",
+          "scope": "/daily_schedule/.*/.*"
+        }
+      ],
+      "to": "0.0.3"
+    },
+    {
+      "description": "Uses scale migration to reverse previous temperature conversion.",
+      "steps": [
+        {
+          "args": {
+            "gain": 1,
+            "offset": -273.15
+          },
+          "description": "A migration to convert Kelvin to Celsius.",
+          "functionName": "scale",
+          "scope": "/daily_schedule/.*/.*"
+        }
+      ],
+      "to": "0.0.4"
+    },
+    {
+      "description": "Uses enum migration to add 'Kitchen' and remove 'Basement' name options. Not guaranteed backwards or forwards migratable so major version bump.",
+      "steps": [
+        {
+          "args": {
+            "add": [
+              "Kitchen"
+            ],
+            "remove": [
+              "Basement"
+            ]
+          },
+          "description": "Add 'Kitchen' and remove 'Basement' name options.",
+          "functionName": "enum",
+          "scope": "/name"
+        }
+      ],
+      "to": "1.0.0"
+    },
+    {
+      "description": "Uses add migration to add 'groups' property. New property is required but a default is given so change is reversible and a patch version bump is appropriate.",
+      "steps": [
+        {
+          "args": {
+            "default": [],
+            "name": "groups",
+            "required": true,
+            "schema": {
+              "type": "array"
+            }
+          },
+          "description": "Add 'groups' property.",
+          "functionName": "add",
+          "scope": ""
+        }
+      ],
+      "to": "1.0.1"
+    },
+    {
+      "description": "Uses required migration to relax the requirement for the groups property added in the previous migration. The required migration doesn't support a default (yet) so this isn't guaranteed revertible, so minor bump",
+      "steps": [
+        {
+          "args": {
+            "add": [],
+            "remove": [
+              "groups"
+            ]
+          },
+          "description": "Make 'groups' property not required.",
+          "functionName": "required",
+          "scope": ""
+        }
+      ],
+      "to": "1.1.0"
+    },
+    {
+      "description": "Use length and items migrations to enforce max 4 groups and all strings. Not guaranteed forward migratable so major version bump",
+      "steps": [
+        {
+          "args": {
+            "maxLength": 4
+          },
+          "description": "Set maximum of 4 groups.",
+          "functionName": "length",
+          "scope": "/groups"
+        },
+        {
+          "args": {
+            "overwrite": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          "description": "Ensure all groups are strings",
+          "functionName": "items",
+          "scope": "/groups"
+        }
+      ],
+      "to": "2.0.0"
+    }
+  ],
+  "name": "Thermostat"
+}

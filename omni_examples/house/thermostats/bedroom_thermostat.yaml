@@ -1,0 +1,9 @@
+$schema: omni:local/thermostat?schema=0.0.1
+name: Bedroom
+schedules:
+  Monday:
+    "2100": 15
+    "0600": 11
+  Tuesday:
+    "2100": 15
+    "0600": 11

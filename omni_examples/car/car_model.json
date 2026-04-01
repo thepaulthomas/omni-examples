@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.omni-clm.com/model/v1/schema",
+  "baseSchema": {
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "additionalProperties": true,
+    "properties": {
+      "$schema": {
+        "type": "string"
+      },
+      "engine": {
+        "additionalProperties": true,
+        "properties": {
+          "map": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "rpm": {
+                  "type": "number"
+                },
+                "torque": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "rpm",
+                "torque"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "maxRPM": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "weight": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "map"
+        ],
+        "type": "object"
+      },
+      "gearbox": {
+        "type": "object"
+      },
+      "name": {
+        "type": "string"
+      },
+      "tyres": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "name",
+      "engine"
+    ],
+    "type": "object"
+  },
+  "baseVersion": "0.0.0",
+  "description": "Car model",
+  "migrations": [],
+  "name": "car"
+}
